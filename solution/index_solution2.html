@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top d-none"
+                src=""
+                alt="Card image cap" data-shiny-url="">
+            <div class="card-body">
+                <h5 class="card-title" style=" text-transform: capitalize;">Lorepokemon</h5>
+                <a href="#" class="btn btn-success">Change to Shiny</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Select one pokemon</option>
+            <option value="pikachu">Pikachu</option>
+            <option value="charmander">Charmander</option>
+            <option value="luxio">Luxio</option>
+            <option value="ralts">Ralts</option>
+            <option value="xatu">Xatu</option>
+            <option value="ekans">Ekans</option>
+            <option value="deoxys">Deoxys</option>
+          </select>
+    </div>
+    <script>
+        // 1 . Hacer que cada vez que se cambie el valor del select, se invoque esta función
+        let select = document.querySelector('.form-select')
+        let button = document.querySelector('.btn')
+
+        select.addEventListener('change', getNewPokemon)
+        button.addEventListener('click', changeToShiny)
+
+        let url_original = "https://pokeapi.co/api/v2/pokemon/"
+        let url_shiny = ""
+
+        function getNewPokemon(event) {
+        let nombrePokemon = event.target.value
+        let url = url_original + nombrePokemon
+        fetch(url).
+        then(response => response.json()).
+        then(data => updatePokemon(data))
+        // Hacer una llamada con la Fetch API al endpoint para obtener los datos del pokemon a partir del nombre del pokemon. Debeis usar su nombre de pokemon como parte dinámica de la URL
+
+        }
+
+        function updatePokemon(data) {
+            console.log(data)
+            document.querySelector('.card-img-top').classList.remove('d-none')
+            document.querySelector('.card-img-top').src = data.sprites.front_default
+            document.querySelector('.card-title').textContent = data.name;
+            url_shiny = data.sprites.front_shiny
+        }
+
+        function changeToShiny() {
+            document.querySelector('.card-img-top').src = url_shiny
+        }
+
+    </script>
+</body>
+
+</html>
