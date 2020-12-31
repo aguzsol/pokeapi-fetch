@@ -1,5 +1,3 @@
-
-
 let url_original = 'https://pokeapi.co/api/v2/pokemon/'
 let url_shiny = ""
 
