@@ -1,16 +1,4 @@
-// document.querySelector('#get-joke').addEventListener('click', function(){
-//     traerDatos();
-// });
 
-
-// function traerDatos(){
-//     const url = 'https://api.chucknorris.io/jokes/random'
-
-//     fetch(url).
-//     then(response => response.json()).
-//     then(data =>displayJoke.innerHTML = data.value).
-//     catch(error => console.log(error))
-// }
 
 let url_original = 'https://pokeapi.co/api/v2/pokemon/'
 let url_shiny = ""
